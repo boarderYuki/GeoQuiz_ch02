@@ -3,7 +3,6 @@
 
     <string name="true_button">True</string>
     <string name="false_button">False</string>
-    <string name="next_button">다음</string>
     <string name="correct_toast">정답!</string>
     <string name="incorrect_toast">틀림!</string>
     <string name="question_oceans">태평양은 대서양보다 더 크다.</string>

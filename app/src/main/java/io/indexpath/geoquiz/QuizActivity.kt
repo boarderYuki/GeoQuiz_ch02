@@ -3,6 +3,7 @@ package io.indexpath.geoquiz
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 
@@ -15,21 +16,37 @@ class QuizActivity : AppCompatActivity() {
 
         val mTrueButton : Button = findViewById(R.id.true_button)
         val mFalseButton : Button = findViewById(R.id.false_button)
-        val mNextButton : Button = findViewById(R.id.next_button)
+        val mNextButton : ImageButton = findViewById(R.id.next_button)
+        val mPrevButton : ImageButton = findViewById(R.id.prev_button)
 
-        mTrueButton.setOnClickListener { view ->
+        mTrueButton.setOnClickListener {
             checkAnswer(true)
 
         }
 
-        mFalseButton.setOnClickListener { view ->
+        mFalseButton.setOnClickListener {
             checkAnswer(false)
         }
 
-        mNextButton.setOnClickListener { view ->
+        mPrevButton.setOnClickListener {
+            if (mCurrentIndex == 0)
+                mCurrentIndex = mQuestionBank.size
+
+            mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.size
+            updateQuestion()
+        }
+
+        mNextButton.setOnClickListener {
             mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.size
             updateQuestion()
         }
+
+        val textClick : TextView = findViewById(R.id.question_text_view)
+        textClick.setOnClickListener {
+            mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.size
+            updateQuestion()
+        }
+
     }
 
 
